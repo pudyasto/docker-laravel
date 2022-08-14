@@ -1,0 +1,14 @@
+Membuat network sendiri pada docker :
+    docker network create --subnet=172.10.0.0/16 mynet
+
+Membuat image mysql dengan custom static IP pada docker :
+    #mysql-5.7
+    docker run --name mysql-5.7 --net mynet --ip 172.10.0.2  -e MYSQL_ROOT_PASSWORD=3335 -d mysql:5.7.39
+    #mysql-terbaru
+    docker run --name mysql-8.0 --net mynet --ip 172.10.0.3  -e MYSQL_ROOT_PASSWORD=3335 -d mysql:latest
+
+Menjalankan docker compose :
+    docker compose up --build
+
+Menjalankan php artisan pada docker :
+    docker-compose run --rm php php /code/artisan optimize
